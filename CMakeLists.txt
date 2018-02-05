@@ -33,7 +33,10 @@ set(SOURCE_FILES
     src/main.cpp
     )
 
-set(LIBS ${LIBS} gearman pthread crypto)
+set(LIBS ${LIBS} restclient-cpp pthread curl)
+
+add_library(restclient-cpp STATIC IMPORTED)
+set_target_properties(restclient-cpp PROPERTIES IMPORTED_LOCATION /home/dtrenin/job/restclient-cpp/.libs/librestclient-cpp.a)
 
 include_directories("${CMAKE_CURRENT_SOURCE_DIR}/src")
 

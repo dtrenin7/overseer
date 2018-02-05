@@ -11,11 +11,11 @@
 #include "cgw-log.h"
 #include "cgw-settings.h"
 #include "json.hpp"
+#include "../../restclient-cpp/include/restclient-cpp/restclient.h"
 
 using json = nlohmann::json;
 
 int main(void) {
-
   try {
     CGW::Settings = new CGW::settings();
   }
@@ -23,6 +23,9 @@ int main(void) {
     printf("ERROR %s\n", error.get_text().c_str());
     exit(1);
   };
+
+  RestClient::Response r = RestClient::get("http://google.ru");
+  printf(r.body.c_str());
 
   std::vector<pthread_t> threads(CGW::Settings->threads);
   /*for(int i = 0; i < CGW::Settings->threads; i++)
